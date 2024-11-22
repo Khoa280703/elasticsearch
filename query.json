@@ -1,0 +1,214 @@
+[
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "multi_match": {
+                            "query": "America Election U.S. Election",
+                            "fields": [
+                                "title",
+                                "plain_text"
+                            ],
+                            "type": "phrase"
+                        }
+                    }
+                ],
+                "filter": [
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-01-01",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match_phrase": {
+                            "plain_text": {
+                                "query": "Trump Clinton",
+                                "slop": 5
+                            }
+                        }
+                    }
+                ],
+                "filter": [
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-01-01",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            "plain_text": "election"
+                        }
+                    }
+                ],
+                "filter": [
+                    {
+                        "terms": {
+                            "plain_text": [
+                                "Florida",
+                                "Pennsylvania",
+                                "Wisconsin"
+                            ]
+                        }
+                    },
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-01-01",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            "plain_text": "election"
+                        }
+                    }
+                ],
+                "should": [
+                    {
+                        "term": {
+                            "plain_text": "immigration"
+                        }
+                    },
+                    {
+                        "term": {
+                            "plain_text": "economy"
+                        }
+                    }
+                ],
+                "minimum_should_match": 1,
+                "filter": [
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-01-01",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            "plain_text": "election"
+                        }
+                    }
+                ],
+                "should": [
+                    {
+                        "term": {
+                            "publisher": "foxnews.com"
+                        }
+                    },
+                    {
+                        "term": {
+                            "publisher": "cnn.com"
+                        }
+                    }
+                ],
+                "minimum_should_match": 1,
+                "filter": [
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-01-01",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "multi_match": {
+                            "query": "Trump Clinton",
+                            "fields": [
+                                "title",
+                                "plain_text"
+                            ],
+                            "type": "phrase"
+                        }
+                    }
+                ],
+                "filter": [
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-01-01",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match_phrase": {
+                            "plain_text": {
+                                "query": "election results Trump victory",
+                                "slop": 5
+                            }
+                        }
+                    }
+                ],
+                "filter": [
+                    {
+                        "range": {
+                            "published_date": {
+                                "gte": "2016-11-08",
+                                "lte": "2016-12-31"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+]

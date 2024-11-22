@@ -1,0 +1,13 @@
+{
+  "name": "elasticsearch",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.15.1",
+    "mongodb": "^6.10.0"
+  }
+}
